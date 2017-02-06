@@ -53,19 +53,19 @@ for i in range(NUM_TRIALS): #Run the test a certain number of times
     PcMirrored = Pc + np.transpose(Pc) #add colonization to and colonization from (normal and transposed matricies)
 
     isColonized = np.zeros(dist.shape)
-    isColonized[np.where(PcMirrored > random2)] = 1
+    isColonized[np.where(PcMirrored > random2)] = 1 #create a new matrix of 0's where the patch is not colonized and 1's where it is
 
     patchColonized = np.sum(isColonized, axis=1)
 
     final = np.zeros(dist.shape[0])
-    final[np.where(np.logical_or(isAlive,patchColonized))] = 1
+    final[np.where(np.logical_or(isAlive,patchColonized))] = 1 #final matrix: 1 if colonized or not dead
 
     sumOfAliveCells = np.sum(final)
     results.append(sumOfAliveCells)
 
 #Calculate number of extinction events (0 alive populations) as a % of NUM_TRIALS
 
-numZero = NUM_TRIALS - np.count_nonzero(np.array(results))
+numZero = NUM_TRIALS - np.count_nonzero(np.array(results)) #how many times the meta-population goes extinct
 percentage = numZero/NUM_TRIALS
 
 print("THE FINAL PROBABILITY OF EXTINCTION IS :", percentage)
