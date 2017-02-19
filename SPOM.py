@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 DISTRIBUTION_MATRIX = "./JH_WS_DistributionMatrixCSV.csv"
 PROB_EXTINCTION_VECTOR = "./JH_WS_ExtinctionVectorCSV.csv"
 
-NUM_TRIALS = 10000
+NUM_TRIALS = 1000
 
 DISTANCE_UNIT_FACTOR = 75
 
@@ -24,7 +24,7 @@ dist_db = dist_db.fillna(1e5) #replace NaN's with big number so that the log fun
 Pe = (np.array(Pe_db.Pe)[:]).astype("float")
 dist = (np.array(dist_db)[:,1:]).astype("float")
 
-Pe = Pe * PROB_EXTINCTION_MULTIPLICATION_FACTOR #in case we want to mess with the numbers a bit, we can divide the extinction vector by a scalar
+ #in case we want to mess with the numbers a bit, we can divide the extinction vector by a scalar
 
 ### Transform distance matrix into probability of colonization matrix
 #parameters found by regression to fit given ln curve: y ~ a * ln(x) + b
@@ -38,6 +38,8 @@ dist[np.where(dist<0)] = 0 #replace anything lower than 0 with a 0.
 results = []
 
 for i in range(NUM_TRIALS): #Run the test a certain number of times
+    Pe = Pe * PROB_EXTINCTION_MULTIPLICATION_FACTOR
+
     #generate two sets of random numbers in the shapes of the extinction vector and distribution matrix (0-1 exclusive, I think...)
     random1 = np.random.rand(Pe.shape[0])
     random2 = np.random.rand(dist.shape[0],dist.shape[1])
@@ -62,6 +64,7 @@ for i in range(NUM_TRIALS): #Run the test a certain number of times
 
     sumOfAliveCells = np.sum(final)
     results.append(sumOfAliveCells)
+
 
 #Calculate number of extinction events (0 alive populations) as a % of NUM_TRIALS
 
