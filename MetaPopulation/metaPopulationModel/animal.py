@@ -25,10 +25,10 @@ class Animal(Agent):
 
         #move
         self.theta = self.theta + (random.random() - 0.5) * self.model.thetaRange
-
         distance = self.model.movementDistance
         self._nextPosition = (self.x + distance * math.cos(self.theta), self.y + distance * math.sin(self.theta))
 
+        #if out of bounds, die
         if self.model.space.out_of_bounds(self._nextPosition):
             self._nextAlive = False
 
@@ -37,7 +37,7 @@ class Animal(Agent):
             if self.model.space.get_distance(self.pos, (hab.x,hab.y)) < hab.radius:
                 hab.population += 1
                 self._nextAlive = False
-                print("absorbed by",hab)
+                # print("absorbed by",hab)
                 if self.original != hab.ID:
                     hab.geneticDiversity += self.model.geneticDiversityAdded
                 return #break out of the function early

@@ -34,8 +34,6 @@ class Habitat(Agent):
         dispersalProb = self.model.dispersalProb
         self._nextDispersal = sum([random.random() < dispersalProb for i in range(population)])
 
-        population = self.population - self._nextDispersal
-
         deathProb = self.model.deathProb
         deaths = sum([random.random() < deathProb for i in range(population)])
 
@@ -62,9 +60,9 @@ class Habitat(Agent):
 
         births = sum([random.random() < birthProb for i in range(population)])
 
-        population = population - math.ceil(population * self.densityIndependentMortality)
+        densityIndependentDeaths = math.ceil(population * self.densityIndependentMortality)
 
-        self._nextPopulation = population - deaths + births
+        self._nextPopulation = population - densityIndependentDeaths - self._nextDispersal - deaths + births
 
         # if self.geneticDiversity > 1:
         #     self.geneticDiversity = 1

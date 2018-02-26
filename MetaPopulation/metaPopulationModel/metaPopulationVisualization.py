@@ -23,7 +23,7 @@ class MetaPopulationVisualization(VisualizationElement):
         template: "canvas_module.html" stores the module's HTML template.
 
     """
-    package_includes = []
+    package_includes = ["d3.js","MetaPopDraw.js"]
     local_includes = ["d3.js","MetaPopDraw.js"]
     portrayal_method_habitat = None
     portrayal_method_animal = None

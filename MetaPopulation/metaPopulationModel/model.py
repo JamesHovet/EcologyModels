@@ -14,7 +14,7 @@ class MetaPopulationModel(Model):
     Represents the collection of all the habitats and animals and the space they live in
     '''
 
-    def __init__(self, height, width, habitats, dispersalProb, deathProb, birthProb, thetaRange, movementDistance, wildernessDeath, geneticDiversityAdded, geneticDiversityDecay, densityIndependentMortality, birthStdDev, minStablePopulation):
+    def __init__(self, height, width, habitats, dispersalProb, deathProb, birthProb, thetaRange, movementDistance, wildernessDeath, geneticDiversityAdded, densityIndependentMortality, birthStdDev, minStablePopulation):
         '''
         Create a new model with a width, height, and a list of habitats
         '''
@@ -26,7 +26,6 @@ class MetaPopulationModel(Model):
         self.movementDistance = movementDistance
         self.wildernessDeath = wildernessDeath
         self.geneticDiversityAdded = geneticDiversityAdded
-        self.geneticDiversityDecay = geneticDiversityDecay
         self.densityIndependentMortality = densityIndependentMortality
         self.birthStdDev = birthStdDev
         self.minStablePopulation = minStablePopulation

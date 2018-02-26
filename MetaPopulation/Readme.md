@@ -1,5 +1,7 @@
 TO DO:
 
+- Make .app smaller
+
 - raw birth probability is a sample from a normally distributed curve : https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.random.normal.html
 
 - populations lose about 1% of its genetic diversity each "generation" https://www.britannica.com/topic/50-500-rule
